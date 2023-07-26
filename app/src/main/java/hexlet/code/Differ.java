@@ -7,12 +7,12 @@ import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Differ {
-    public static String generate(File file1, File file2) throws Exception {
+    public static String generate(Path file1, Path file2) throws Exception {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Map<String, Object> map1 = objectMapper.readValue(file1, Map.class);
-        Map<String, Object> map2 = objectMapper.readValue(file2, Map.class);
+        Map<String, Object> map1 = objectMapper.readValue(file1.toAbsolutePath().toFile(), Map.class);
+        Map<String, Object> map2 = objectMapper.readValue(file2.toAbsolutePath().toFile(), Map.class);
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());
@@ -43,7 +43,6 @@ public class Differ {
                 resultString = resultString + "\n" + "    " + entry.getKey() + ": " + entry.getValue();
             }
         }
-        System.out.println(resultString + "\n" + "}");
         return resultString + "\n" + "}";
     }
 }

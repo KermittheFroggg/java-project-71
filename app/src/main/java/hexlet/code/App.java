@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true,
@@ -17,14 +18,13 @@ public class App implements Callable {
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     String format;
     @Parameters(paramLabel = "filepath1", description = "path to first file")
-    File file;
+    Path file;
     @Parameters(paramLabel = "filepath2", description = "path to second file")
-    File file2;
+    Path file2;
     @Override
     public Object call() {
         try {
-          Differ.generate(file, file2);
-//            System.out.println(Differ.generate("/Users/uliaegorycheva/1.json", "/Users/uliaegorycheva/2.json"));
+            System.out.println(Differ.generate(file, file2));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
