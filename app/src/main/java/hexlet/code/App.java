@@ -21,7 +21,11 @@ public class App implements Runnable {
     File file2;
     @Override
     public void run() {
-        System.out.println("Hello world");
+        try {
+            System.out.println(Differ.generate("/Users/uliaegorycheva/1.json", "/Users/uliaegorycheva/2.json"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         ;
     }
 }
