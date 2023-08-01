@@ -14,7 +14,7 @@ public class DifferTest {
         String result = Files.readString(file.toPath());
 
         String fileFirst = "./src/test/resources/first.json";
-        String fileSecond = "./src/test/resources/first.json";
+        String fileSecond = "./src/test/resources/second.json";
         System.out.println(Differ.generate(fileFirst, fileSecond));
         Assert.assertEquals(result, Differ.generate(fileFirst, fileSecond));
         assertThat(result).isEqualTo(Differ.generate(fileFirst, fileSecond));
