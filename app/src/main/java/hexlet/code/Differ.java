@@ -1,20 +1,15 @@
 package hexlet.code;
 
-import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Differ {
     public static String generate(String file1, String file2) throws Exception {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Map<String, Object> map1 = objectMapper.readValue(Path.of(file1).toAbsolutePath().toFile(), Map.class);
-        Map<String, Object> map2 = objectMapper.readValue(Path.of(file2).toAbsolutePath().toFile(), Map.class);
+        Map<String, Object> map1 = Parser.parser(file1);
+        Map<String, Object> map2 = Parser.parser(file2);
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());

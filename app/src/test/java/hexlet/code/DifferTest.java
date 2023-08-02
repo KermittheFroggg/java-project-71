@@ -10,13 +10,18 @@ public class DifferTest {
     @Test
     public void testDiffer() throws Exception {
 
-        File file = new File("./src/test/resources/result.json");
+        File file = new File("./src/test/resources/resultJson.json");
         String result = Files.readString(file.toPath());
 
-        String fileFirst = "./src/test/resources/first.json";
-        String fileSecond = "./src/test/resources/second.json";
-        System.out.println(Differ.generate(fileFirst, fileSecond));
-        Assert.assertEquals(result, Differ.generate(fileFirst, fileSecond));
-        assertThat(result).isEqualTo(Differ.generate(fileFirst, fileSecond));
+        String firstJson = "./src/test/resources/firstJson.json";
+        String secondJson = "./src/test/resources/secondJson.json";
+
+        String firstYaml = "./src/test/resources/firstYaml.yml";
+        String secondYaml = "./src/test/resources/secondYaml.yml";
+
+        Assert.assertEquals(result, Differ.generate(firstJson, secondJson));
+        assertThat(result).isEqualTo(Differ.generate(firstJson, secondJson));
+        assertThat(result).isEqualTo(Differ.generate(firstYaml, secondYaml));
+
     }
 }
