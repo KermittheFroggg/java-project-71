@@ -27,6 +27,13 @@ public class DifferTest {
         String secondJsonNested = "./src/test/resources/jsonNested/secondJsonNested.json";
         assertThat(resultJsonNested).isEqualTo(Differ.generate(firstJsonNested, secondJsonNested));
 
+        File fileYamlNested = new File("./src/test/resources/yamlNested/resultYamlNested.yml");
+        String resultYamlNested = Files.readString(fileYamlNested.toPath());
+        String firstYamlNested = "./src/test/resources/yamlNested/firstYamlNested.yml";
+        String secondYamlNested = "./src/test/resources/yamlNested/secondYamlNested.yml";
+        assertThat(resultYamlNested).isEqualTo(Differ.generate(firstYamlNested, secondYamlNested));
+
+
 
     }
 }
