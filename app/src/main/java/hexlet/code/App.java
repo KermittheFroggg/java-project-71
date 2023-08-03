@@ -21,7 +21,7 @@ public class App implements Callable {
     @Override
     public Object call() {
         try {
-            System.out.println(Differ.generate(file, file2));
+            System.out.println(Differ.generate(file, file2, format));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -13,7 +13,7 @@ public class DifferTest {
         String resultJson = Files.readString(fileJson.toPath());
         String firstJson = "./src/test/resources/json/firstJson.json";
         String secondJson = "./src/test/resources/json/secondJson.json";
-        assertThat(resultJson).isEqualTo(Differ.generate(firstJson, secondJson));
+        assertThat(resultJson).isEqualTo(Differ.generate(firstJson, secondJson, "stylish"));
 
         File fileYaml = new File("./src/test/resources/yaml/resultYaml.yml");
         String resultYaml = Files.readString(fileYaml.toPath());
