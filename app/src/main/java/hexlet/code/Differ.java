@@ -1,9 +1,11 @@
 package hexlet.code;
 
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Objects;
 
 public class Differ {
     public static String generate(String file1, String file2) throws Exception {
@@ -19,7 +21,7 @@ public class Differ {
         for (String key : keys) {
             if (map1.containsKey(key)) {
                 if (map2.containsKey(key)) {
-                    if (map1.get(key).equals(map2.get(key))) {
+                    if (Objects.equals(map1.get(key), map2.get(key))) {
                         result.put(key, map1.get(key));
                     } else {
                         result.put("- " + key, map1.get(key));
@@ -32,6 +34,7 @@ public class Differ {
                 result.put("+ " + key, map2.get(key));
             }
         }
+
         String resultString = "{";
         for (Map.Entry<String, Object> entry : result.entrySet()) {
             if (entry.getKey().startsWith("+") || entry.getKey().startsWith("-")) {
