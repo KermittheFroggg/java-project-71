@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Files;
@@ -10,18 +9,19 @@ public class DifferTest {
     @Test
     public void testDiffer() throws Exception {
 
-        File file = new File("./src/test/resources/resultJson.json");
-        String result = Files.readString(file.toPath());
+        File fileJson = new File("./src/test/resources/json/resultJson.json");
+        String resultJson = Files.readString(fileJson.toPath());
+        File fileYaml = new File("./src/test/resources/yaml/resultYaml.yml");
+        String resultYaml = Files.readString(fileYaml.toPath());
 
-        String firstJson = "./src/test/resources/firstJson.json";
-        String secondJson = "./src/test/resources/secondJson.json";
+        String firstJson = "./src/test/resources/json/firstJson.json";
+        String secondJson = "./src/test/resources/json/secondJson.json";
 
-        String firstYaml = "./src/test/resources/firstYaml.yml";
-        String secondYaml = "./src/test/resources/secondYaml.yml";
+        String firstYaml = "./src/test/resources/yaml/firstYaml.yml";
+        String secondYaml = "./src/test/resources/yaml/secondYaml.yml";
 
-        Assert.assertEquals(result, Differ.generate(firstJson, secondJson));
-        assertThat(result).isEqualTo(Differ.generate(firstJson, secondJson));
-        assertThat(result).isEqualTo(Differ.generate(firstYaml, secondYaml));
+        assertThat(resultJson).isEqualTo(Differ.generate(firstJson, secondJson));
+        assertThat(resultYaml).isEqualTo(Differ.generate(firstYaml, secondYaml));
 
     }
 }
