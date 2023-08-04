@@ -9,15 +9,22 @@ public class Formatter {
                                  Map<String, Object> resultOfDiffer) {
         String resultString = "{";
         for (Map.Entry<String, Object> entry : resultOfDiffer.entrySet()) {
-            if (entry.getValue().equals("same")) {
-                resultString = resultString + "\n" + "    " + entry.getKey() + ": " + map1.get(entry.getKey());
-            } else if (entry.getValue().equals("updated")) {
-                resultString = resultString + "\n" + "  - " + entry.getKey() + ": " + map1.get(entry.getKey());
-                resultString = resultString + "\n" + "  + " + entry.getKey() + ": " + map2.get(entry.getKey());
-            } else if (entry.getValue().equals("removed")) {
-                resultString = resultString + "\n" + "  - " + entry.getKey() + ": " + map1.get(entry.getKey());
-            } else if (entry.getValue().equals("added")) {
-                resultString = resultString + "\n" + "  + " + entry.getKey() + ": " + map2.get(entry.getKey());
+            switch (entry.getValue().toString()) {
+                case "updated":
+                    resultString = resultString + "\n" + "  - " + entry.getKey() + ": " + map1.get(entry.getKey());
+                    resultString = resultString + "\n" + "  + " + entry.getKey() + ": " + map2.get(entry.getKey());
+                    break;
+                case "added":
+                    resultString = resultString + "\n" + "  + " + entry.getKey() + ": " + map2.get(entry.getKey());
+                    break;
+                case "removed":
+                    resultString = resultString + "\n" + "  - " + entry.getKey() + ": " + map1.get(entry.getKey());
+                    break;
+                case "same":
+                    resultString = resultString + "\n" + "    " + entry.getKey() + ": " + map1.get(entry.getKey());
+                    break;
+                default:
+                    continue;
             }
         }
         return resultString + "\n" + "}";
