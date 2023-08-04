@@ -10,11 +10,9 @@ public class Differ {
     public static String generate(String file1, String file2, String format) throws Exception {
         Map<String, Object> map1 = Parser.parser(file1);
         Map<String, Object> map2 = Parser.parser(file2);
-
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());
         keys.addAll(map2.keySet());
-
         Map<String, Object> result = new LinkedHashMap<>();
         for (String key : keys) {
             if (map1.containsKey(key)) {
