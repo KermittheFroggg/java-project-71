@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class Differ {
     public static String generate(String file1, String file2, String format) throws Exception {
-
         Map<String, Object> map1 = Parser.parser(file1);
         Map<String, Object> map2 = Parser.parser(file2);
 
@@ -32,7 +31,6 @@ public class Differ {
                 result.put(key, "added");
             }
         }
-
         if (format.equals("stylish")) {
             return Formatter.stylish(map1, map2, result);
         } else if (format.equals("plain")) {
