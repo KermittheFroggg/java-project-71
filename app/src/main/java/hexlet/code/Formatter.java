@@ -4,6 +4,19 @@ import java.util.Map;
 import java.util.List;
 
 public class Formatter {
+
+    public static String run(Map<String, Object> map1,
+                             Map<String, Object> map2,
+                             Map<String, Object> resultOfDiffer,
+                             String format) {
+        if (format.equals("stylish")) {
+            return Formatter.stylish(map1, map2, resultOfDiffer);
+        } else if (format.equals("plain")) {
+            return Formatter.plain(map1, map2, resultOfDiffer);
+        }
+        return "Don't know this format";
+    }
+
     public static String stylish(Map<String, Object> map1,
                                  Map<String, Object> map2,
                                  Map<String, Object> resultOfDiffer) {
