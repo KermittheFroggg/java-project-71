@@ -34,23 +34,29 @@ public class Formatter {
             if (map2.get(entry.getKey()) instanceof String) {
                 map2.put(entry.getKey(), "'" + map2.get(entry.getKey()) + "'");
             }
-            if (entry.getValue().equals("updated")) {
-                if (map1.get(entry.getKey()) instanceof Map || map1.get(entry.getKey()) instanceof List) {
-                    map1.put(entry.getKey(), "[complex value]");
-                }
-                if (map2.get(entry.getKey()) instanceof Map || map2.get(entry.getKey()) instanceof List) {
-                    map2.put(entry.getKey(), "[complex value]");
-                }
-                resultString = resultString + "Property '" + entry.getKey() + "' was updated. From "
-                        + map1.get(entry.getKey()) + " to " + map2.get(entry.getKey()) + "\n";
-            } else if (entry.getValue().equals("added")) {
-                if (map2.get(entry.getKey()) instanceof Map || map2.get(entry.getKey()) instanceof List) {
-                    map2.put(entry.getKey(), "[complex value]");
-                }
-                resultString = resultString + "Property '" + entry.getKey() + "' was added with value: "
-                        + map2.get(entry.getKey()) + "\n";
-            } else if (entry.getValue().equals("removed")) {
-                resultString = resultString + "Property '" + entry.getKey() + "' was removed" + "\n";
+            switch (entry.getValue().toString()) {
+                case "updated":
+                    if (map1.get(entry.getKey()) instanceof Map || map1.get(entry.getKey()) instanceof List) {
+                        map1.put(entry.getKey(), "[complex value]");
+                    }
+                    if (map2.get(entry.getKey()) instanceof Map || map2.get(entry.getKey()) instanceof List) {
+                        map2.put(entry.getKey(), "[complex value]");
+                    }
+                    resultString = resultString + "Property '" + entry.getKey() + "' was updated. From "
+                            + map1.get(entry.getKey()) + " to " + map2.get(entry.getKey()) + "\n";
+                    break;
+                case "added":
+                    if (map2.get(entry.getKey()) instanceof Map || map2.get(entry.getKey()) instanceof List) {
+                        map2.put(entry.getKey(), "[complex value]");
+                    }
+                    resultString = resultString + "Property '" + entry.getKey() + "' was added with value: "
+                            + map2.get(entry.getKey()) + "\n";
+                    break;
+                case "removed":
+                    resultString = resultString + "Property '" + entry.getKey() + "' was removed" + "\n";
+                    break;
+                default:
+                    continue;
             }
         }
         return resultString.trim();
