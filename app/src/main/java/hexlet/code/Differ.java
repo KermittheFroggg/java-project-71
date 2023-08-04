@@ -21,7 +21,7 @@ public class Differ {
             if (map1.containsKey(key)) {
                 if (map2.containsKey(key)) {
                     if (Objects.equals(map1.get(key), map2.get(key))) {
-                        resultOfDiffer.put(key, "same");
+                        resultOfDiffer.put(key, "unchanged");
                     } else {
                         resultOfDiffer.put(key, "updated");
                     }

@@ -43,5 +43,13 @@ public class DifferTest {
                                                                     secondJsonNestedPlain,
                                                                 "plain"));
 
+        File fileJsonFile = new File("./src/test/resources/jsonFile/resultJson.json");
+        String resultJsonFile = Files.readString(fileJsonFile.toPath());
+        String firstJsonFile = "./src/test/resources/jsonFile/firstJson.json";
+        String secondJsonFile = "./src/test/resources/jsonFile/secondJson.json";
+        assertThat(resultJsonFile).isEqualTo(Differ.generate(firstJsonFile,
+                secondJsonFile,
+                "json"));
+
     }
 }

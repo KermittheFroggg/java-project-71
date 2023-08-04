@@ -1,5 +1,9 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import java.util.Map;
 import java.util.List;
 
@@ -8,11 +12,13 @@ public class Formatter {
     public static String run(Map<String, Object> map1,
                              Map<String, Object> map2,
                              Map<String, Object> resultOfDiffer,
-                             String format) {
+                             String format) throws JsonProcessingException {
         if (format.equals("stylish")) {
-            return Formatter.stylish(map1, map2, resultOfDiffer);
+            return stylish(map1, map2, resultOfDiffer);
         } else if (format.equals("plain")) {
-            return Formatter.plain(map1, map2, resultOfDiffer);
+            return plain(map1, map2, resultOfDiffer);
+        } else if (format.equals("json")) {
+            return json(map1, map2, resultOfDiffer);
         }
         return "Don't know this format";
     }
@@ -33,7 +39,7 @@ public class Formatter {
                 case "removed":
                     resultString += "\n" + "  - " + entry.getKey() + ": " + map1.get(entry.getKey());
                     break;
-                case "same":
+                case "unchanged":
                     resultString += "\n" + "    " + entry.getKey() + ": " + map1.get(entry.getKey());
                     break;
                 default:
@@ -72,6 +78,13 @@ public class Formatter {
             }
         }
         return resultString.trim();
+    }
+    public static String json(Map<String, Object> map1,
+                                 Map<String, Object> map2,
+                                 Map<String, Object> resultOfDiffer) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(resultOfDiffer);
+        return json;
     }
 
     public static void addQuotesToString(Map<String, Object> map,
