@@ -1,6 +1,5 @@
 package hexlet.code;
 
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -22,21 +21,22 @@ public class Differ {
             if (map1.containsKey(key)) {
                 if (map2.containsKey(key)) {
                     if (Objects.equals(map1.get(key), map2.get(key))) {
-                        result.put(key, map1.get(key));
+                        result.put(key, "same");
                     } else {
-                        result.put("- " + key, map1.get(key));
-                        result.put("+ " + key, map2.get(key));
+                        result.put(key, "updated");
                     }
                 } else {
-                    result.put("- " + key, map1.get(key));
+                    result.put(key, "removed");
                 }
             } else {
-                result.put("+ " + key, map2.get(key));
+                result.put(key, "added");
             }
         }
 
         if (format.equals("stylish")) {
-            return Formatter.stylish(result);
+            return Formatter.stylish(map1, map2, result);
+        } else if (format.equals("plain")) {
+            return Formatter.plain(map1, map2, result);
         }
         return "Не знаю такого формата";
     }
@@ -55,19 +55,17 @@ public class Differ {
             if (map1.containsKey(key)) {
                 if (map2.containsKey(key)) {
                     if (Objects.equals(map1.get(key), map2.get(key))) {
-                        result.put(key, map1.get(key));
+                        result.put(key, "same");
                     } else {
-                        result.put("- " + key, map1.get(key));
-                        result.put("+ " + key, map2.get(key));
+                        result.put(key, "updated");
                     }
                 } else {
-                    result.put("- " + key, map1.get(key));
+                    result.put(key, "removed");
                 }
             } else {
-                result.put("+ " + key, map2.get(key));
+                result.put(key, "added");
             }
         }
-
-        return Formatter.stylish(result);
+        return Formatter.stylish(map1, map2, result);
     }
 }

@@ -1,8 +1,10 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.nio.file.Files;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
@@ -33,7 +35,13 @@ public class DifferTest {
         String secondYamlNested = "./src/test/resources/yamlNested/secondYamlNested.yml";
         assertThat(resultYamlNested).isEqualTo(Differ.generate(firstYamlNested, secondYamlNested));
 
-
+        File fileJsonNestedPlain = new File("./src/test/resources/jsonNestedPlain/resultJsonNestedPlain.json");
+        String resultJsonNestedPlain = Files.readString(fileJsonNestedPlain.toPath());
+        String firstJsonNestedPlain = "./src/test/resources/jsonNestedPlain/firstJsonNestedPlain.json";
+        String secondJsonNestedPlain = "./src/test/resources/jsonNestedPlain/secondJsonNestedPlain.json";
+        assertThat(resultJsonNestedPlain).isEqualTo(Differ.generate(firstJsonNestedPlain,
+                                                                    secondJsonNestedPlain,
+                                                                "plain"));
 
     }
 }
