@@ -28,12 +28,7 @@ public class Formatter {
                                Map<String, Object> resultOfDiffer) {
         String resultString = "";
         for (Map.Entry<String, Object> entry : resultOfDiffer.entrySet()) {
-            if (map1.get(entry.getKey()) instanceof String) {
-                map1.put(entry.getKey(), "'" + map1.get(entry.getKey()) + "'");
-            }
-            if (map2.get(entry.getKey()) instanceof String) {
-                map2.put(entry.getKey(), "'" + map2.get(entry.getKey()) + "'");
-            }
+            addingQuotesToString(map1, map2, entry);
             switch (entry.getValue().toString()) {
                 case "updated":
                     if (map1.get(entry.getKey()) instanceof Map || map1.get(entry.getKey()) instanceof List) {
@@ -60,5 +55,16 @@ public class Formatter {
             }
         }
         return resultString.trim();
+    }
+
+    public static void addingQuotesToString(Map<String, Object> map1,
+                                            Map<String, Object> map2,
+                                            Map.Entry<String, Object> entry) {
+        if (map1.get(entry.getKey()) instanceof String) {
+            map1.put(entry.getKey(), "'" + map1.get(entry.getKey()) + "'");
+        }
+        if (map2.get(entry.getKey()) instanceof String) {
+            map2.put(entry.getKey(), "'" + map2.get(entry.getKey()) + "'");
+        }
     }
 }
