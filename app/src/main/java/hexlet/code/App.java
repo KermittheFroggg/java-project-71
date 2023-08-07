@@ -12,7 +12,7 @@ public class App implements Callable {
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
     }
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", defaultValue = "stylish")
     String format;
     @Parameters(paramLabel = "filepath1", description = "path to first file")
     String file;

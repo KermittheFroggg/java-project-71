@@ -51,5 +51,36 @@ public class DifferTest {
                 secondJsonFile,
                 "json"));
 
+        File fileJsonFilePlain = new File("./src/test/resources/hexletTests/result_plain.txt");
+        String resultJsonFilePlain = Files.readString(fileJsonFilePlain.toPath());
+        String firstJsonFilePlain = "./src/test/resources/hexletTests/file1.json";
+        String secondJsonFilePlain = "./src/test/resources/hexletTests/file2.json";
+        assertThat(Differ.generate(firstJsonFilePlain,
+                secondJsonFilePlain,
+                "plain")).isEqualTo(resultJsonFilePlain);
+
+        File fileYamlFilePlain = new File("./src/test/resources/hexletTests/result_plain.txt");
+        String resultYamlFilePlain = Files.readString(fileYamlFilePlain.toPath());
+        String firstYamlFilePlain = "./src/test/resources/hexletTests/file1.yml";
+        String secondYamlFilePlain = "./src/test/resources/hexletTests/file2.yml";
+        assertThat(Differ.generate(firstYamlFilePlain,
+                secondYamlFilePlain,
+                "plain")).isEqualTo(resultYamlFilePlain);
+
+        File fileJsonFileStylish = new File("./src/test/resources/hexletTests/result_stylish.txt");
+        String resultJsonFileStylish = Files.readString(fileJsonFileStylish.toPath());
+        String firstJsonFileStylish = "./src/test/resources/hexletTests/file1.json";
+        String secondJsonFileStylish = "./src/test/resources/hexletTests/file2.json";
+        assertThat(Differ.generate(firstJsonFileStylish,
+                secondJsonFileStylish,
+                "stylish")).isEqualTo(resultJsonFileStylish);
+
+        File fileYamlFileStylish = new File("./src/test/resources/hexletTests/result_stylish.txt");
+        String resultYamlFileStylish = Files.readString(fileYamlFileStylish.toPath());
+        String firstYamlFileStylish = "./src/test/resources/hexletTests/file1.yml";
+        String secondYamlFileStylish = "./src/test/resources/hexletTests/file2.yml";
+        assertThat(Differ.generate(firstYamlFileStylish,
+                secondYamlFileStylish,
+                "stylish")).isEqualTo(resultYamlFileStylish);
     }
 }

@@ -46,7 +46,7 @@ public class Formatter {
                     continue;
             }
         }
-        return resultString + "\n" + "}";
+        return resultString + "\n" + "}" + "\n";
     }
 
     public static String plain(Map<String, Object> map1,
@@ -77,14 +77,14 @@ public class Formatter {
                     continue;
             }
         }
-        return resultString.trim();
+        return resultString;
     }
     public static String json(Map<String, Object> map1,
                                  Map<String, Object> map2,
                                  Map<String, Object> resultOfDiffer) throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(resultOfDiffer);
-        return json;
+        return json + "\n";
     }
 
     public static void addQuotesToString(Map<String, Object> map,
