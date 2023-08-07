@@ -3,6 +3,7 @@ package hexlet.code;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
 import java.util.List;
@@ -46,7 +47,7 @@ public class Formatter {
                     continue;
             }
         }
-        return resultString + "\n" + "}" + "\n";
+        return resultString + "\n" + "}";
     }
 
     public static String plain(Map<String, Object> map1,
@@ -77,14 +78,15 @@ public class Formatter {
                     continue;
             }
         }
-        return resultString;
+        StringUtils.removeEnd(resultString, "\n");
+        return resultString.trim();
     }
     public static String json(Map<String, Object> map1,
                                  Map<String, Object> map2,
                                  Map<String, Object> resultOfDiffer) throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(resultOfDiffer);
-        return json + "\n";
+        return json;
     }
 
     public static void addQuotesToString(Map<String, Object> map,
