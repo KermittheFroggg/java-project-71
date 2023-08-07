@@ -6,5 +6,5 @@
 
 <a href="https://codeclimate.com/github/KermittheFroggg/java-project-71/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7006b56b17463b41cfbd/test_coverage" /></a>
 
-### Maintainability and Test coverage:
+### CI status:
 [![example workflow](https://github.com/KermittheFroggg/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/KermittheFroggg/java-project-71/actions)
